@@ -11,3 +11,14 @@ class Solution {
                 return false;
     }
 }
+
+I was able to figure out the above solution on my own.  After solving the problem, I looked at other solutions and learned about the "seen" function of Sets.  I was previously unfamiliar with the seen function.
+
+Set<Integer> seen = new HashSet<>();
+                for (int num : nums) {
+                    if (seen.contains(num)) {
+                        return true;
+                    }
+                    seen.add(num);
+                }
+                return false;
