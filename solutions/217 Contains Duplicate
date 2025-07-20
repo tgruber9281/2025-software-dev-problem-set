@@ -1,24 +1,16 @@
-class Solution {
-    public boolean containsDuplicate(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-                    int intcheck = nums[i];
-                    for (int h = i+1; h < nums.length; h++) {
-                        if (intcheck == nums[h]) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-    }
-}
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
 
-I was able to figure out the above solution on my own.  After solving the problem, I looked at other solutions and learned about the "seen" function of Sets.  I was previously unfamiliar with the seen function.
+var containsDuplicate = function(nums) {
+    for (i = 0; i < nums.length; i++) {
+      let numfilter = nums.slice(i+1);
 
-Set<Integer> seen = new HashSet<>();
-                for (int num : nums) {
-                    if (seen.contains(num)) {
-                        return true;
-                    }
-                    seen.add(num);
-                }
-                return false;
+      console.log(numfilter);
+      if (numfilter.includes(nums[i])){
+        return true;
+      }
+    };
+    return false;
+};
