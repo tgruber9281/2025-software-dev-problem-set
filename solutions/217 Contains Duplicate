@@ -1,3 +1,25 @@
+Java solution after several days of not having done the problem
+
+class Solution {
+            
+            private int[] nums = {1,2,3,1};
+            
+            public boolean containsDuplicate(int[] nums) {
+                Arrays.sort(nums);
+                for (int i = 0; i < nums.length-1; i++) {
+                    if (nums[i] == nums[i+1]) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+***********************************************************************
+
+
+JavaScript Solution
+
 /**
  * @param {number[]} nums
  * @return {boolean}
