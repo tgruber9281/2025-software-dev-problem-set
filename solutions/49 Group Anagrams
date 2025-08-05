@@ -1,0 +1,32 @@
+class Solution {
+            
+            public String sortString(String str) {
+                char[] charArray = str.toCharArray();
+                Arrays.sort(charArray);
+                return new String(charArray);
+            }
+            
+            public List<List<String>> groupAnagrams(String[] strs) {
+                Set<String> anagramSet = new HashSet<>();
+                
+                List<List<String>> groupedAnagrams = new ArrayList<>();
+                
+                for (int i = 0; i < strs.length; i++) {
+                    List<String> anagrams = new ArrayList<>();
+                    
+                    if (!anagramSet.contains(sortString(strs[i]))) {
+                        anagramSet.add(sortString(strs[i]));
+                        anagrams.add(strs[i]);
+                        
+                        for (int j = i+1; j < strs.length; j++) {
+                            
+                            if (sortString(strs[j]).equals(sortString(strs[i]))) {
+                                anagrams.add(strs[j]);
+                            }
+                        }
+                        groupedAnagrams.add(anagrams);
+                    }
+                }
+                return groupedAnagrams;
+            }
+        }
