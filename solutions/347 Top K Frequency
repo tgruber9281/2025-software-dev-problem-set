@@ -1,0 +1,24 @@
+Coded this after watching the NeetCode video.  It doesn't handle negative values in the input array and so fails in LeetCode.  I don't understand the type declaration in this line from the NeetCode solution: List<Integer>[] freq = new List[nums.length + 1]; compared to my declaration on line 5.  Is it just different or is there a reason?  I'm still studying the solution to understand how to handle negative integers in the input array.
+
+public int[] topKFrequent(int[] nums, int k) {
+                Map<Integer, Integer> count = new HashMap<>();
+                int[] freq = new int[nums.length+1];
+                int[] result = new int[k];
+                for (int num : nums) {
+                    if (!count.containsKey(num)){
+                        count.put(num,1);
+                    } else {
+                        count.put(num, count.get(num) + 1);
+                    }
+                }
+                for (Map.Entry<Integer,Integer> entry : count.entrySet()){
+                    freq[entry.getValue()] = entry.getKey();
+                }
+                int resultInt = 0;
+                for (int i = freq.length-1; i > 0 && resultInt < k; i--) {
+                    if (freq[i] > 0) {
+                        result[resultInt] = freq[i];
+                        resultInt++;
+                }
+                return result;
+            }
