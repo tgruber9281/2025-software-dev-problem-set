@@ -22,3 +22,43 @@ public int[] topKFrequent(int[] nums, int k) {
                 }
                 return result;
             }
+
+****************************************************************************************************
+
+Code after analyzing and understanding the NeetCode solution.
+
+public int[] topKFrequent(int[] nums, int k) {
+                Map<Integer, Integer> count = new HashMap<>();
+                List<Integer>[] freq = new List[nums.length+1];
+                for (int i = 0; i < freq.length; i++) {
+                    freq[i] = new ArrayList<>();
+                }
+                
+                int[] result = new int[k];
+                
+                for (int num : nums) {
+                    if (!count.containsKey(num)){
+                        count.put(num,1);
+                    } else {
+                        count.put(num, count.get(num) + 1);
+                    }
+                }
+                for (Map.Entry<Integer,Integer> entry : count.entrySet()){
+                    freq[entry.getValue()].add(entry.getKey());
+                    System.out.println("key/integer: " + entry.getKey() + ", value/frequency: " + entry.getValue());
+                }
+                int resultInt = 0;
+                System.out.println("freq array: " + Arrays.toString(freq));
+                System.out.println("result before: " + Arrays.toString(result));
+                for (int i = freq.length - 1; i > 0 && resultInt < k; i--) {
+                    for (int n : freq[i]) {
+                        System.out.println("list n: " + n);
+                        result[resultInt++] = n;
+                        System.out.println("result after: " + Arrays.toString(result));
+                        if (resultInt == k) {
+                            return result;
+                        }
+                    }
+                }
+                return result;
+            }
